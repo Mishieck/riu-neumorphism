@@ -10,6 +10,7 @@ export const setStyle = (element, rgb, options) => {
     0px 
     rgba(0, 0, 0, 0.15) 
     ${options.shadowPosition},
+    
     ${lightSign}${options.size * 1.5}px 
     ${lightSign}${options.size * 1.5}px 
     ${options.size * 3}px 

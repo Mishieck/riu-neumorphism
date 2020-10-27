@@ -1,5 +1,6 @@
 import { substringBetween as substr } from "./substring-between.js";
 
+
 export const attribute2options = (attribute) => {
   let radius = "8px", light = "top-left", shadowPosition = "", curvature = "flat", size = 6, boundary = "boxShadow";
 
