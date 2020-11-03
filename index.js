@@ -8,7 +8,6 @@ const elements = document.querySelectorAll("[riu-neu]");
 for(let len = elements.length; len--; ) {
   let rgb = new Uint8ClampedArray([0, 0, 0]);
   const options = attribute2options(elements[len].getAttribute("riu-neu"));
-  console.info(options);
 
   if(options.collection) {
     rgb  = getBackgroundColor(elements[len], "background-color");
@@ -16,9 +15,6 @@ for(let len = elements.length; len--; ) {
     continue;
   }
 
-
   rgb  = getBackgroundColor(elements[len].parentNode, "background-color");
-  console.info(rgb);
-  console.info(rgb.map(component => parseFloat(component)));
   setStyle(elements[len], rgb.map(component => parseFloat(component)), options);
 }

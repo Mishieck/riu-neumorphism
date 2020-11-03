@@ -5,8 +5,8 @@ export const setStyle = (element, rgb, options) => {
   const gradient = (curveAngle) => {
     return `linear-gradient(
       ${curveAngle}deg, 
-      rgba(${rgb[0] + 16}, ${rgb[1] + 16}, ${rgb[2] + 16}, ${rgb[3] || 1}),
-      rgba(${rgb[0] - 16}, ${rgb[1] - 16}, ${rgb[2] - 16}, ${rgb[3] || 1}))`;
+      rgba(${rgb[0] + options.curvature[1]}, ${rgb[1] + options.curvature[1]}, ${rgb[2] + options.curvature[1]}, ${rgb[3] || 1}),
+      rgba(${rgb[0] - options.curvature[1]}, ${rgb[1] - options.curvature[1]}, ${rgb[2] - options.curvature[1]}, ${rgb[3] || 1}))`;
   }
   
   element.style.borderRadius = options.radius;
@@ -22,26 +22,26 @@ export const setStyle = (element, rgb, options) => {
     darkSigns[1] = "-";
   }
 
-  const style = `
-    ${lightSigns[0]}${options.size * 1.5}px 
-    ${lightSigns[1]}${options.size * 1.5}px 
-    ${options.size * 3}px 
-    0px 
-    rgba(255, 255, 255, 0.4) 
+  const shadows = `
+    ${lightSigns[0]}${options.shadows[0][0]}
+    ${lightSigns[1]}${options.shadows[0][0]}
+    ${options.shadows[0][1]}
+    ${options.shadows[0][2]} 
+    rgba(255, 255, 255, ${options.opacity[0]}) 
     ${options.shadowPosition},
 
-    ${darkSigns[0]}${options.size}px 
-    ${darkSigns[1]}${options.size}px 
-    ${options.size * 2}px 
-    0px 
-    rgba(0, 0, 0, 0.15) 
+    ${darkSigns[0]}${options.shadows[1][0]}
+    ${darkSigns[1]}${options.shadows[1][0]}
+    ${options.shadows[1][1]}
+    ${options.shadows[1][2]} 
+    rgba(0, 0, 0, ${options.opacity[1]}) 
     ${options.shadowPosition}`;
 
-  element.style[options.boundary] = style;
+  element.style[options.boundary] = shadows;
 
-  if(options.curvature === "convex") {
+  if(options.curvature[0] === "convex") {
     element.style.background = gradient(options.light - 90);
-  } else if(options.curvature === "concave") {
+  } else if(options.curvature[0] === "concave") {
     element.style.background = gradient(options.light + 90);
   }
 }

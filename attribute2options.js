@@ -2,10 +2,16 @@ import { substringBetween as substr } from "./substring-between.js";
 
 
 export const attribute2options = (attribute) => {
-  let radius = "8px", light = -135, shadowPosition = "", curvature = "flat", size = 6, boundary = "boxShadow";
+  let radius = "8px",
+  light = -135,
+  shadowPosition = "",
+  curvature = ["flat", 16],
+  boundary = "boxShadow",
+  shadows = [["9px", "18px", "0px"], ["6px", "12px", "0px"]],
+  opacity = ["0.4", "0.15"];
 
   if(attribute.includes("radius")) {
-    radius = substr(attribute.slice(attribute.indexOf("radius") + 8), ["", 0], [")", 0]);
+    radius = substr(attribute.slice(attribute.indexOf("radius") + 7), ["", 0], [")", 0]);
   }
 
   if (attribute.includes("top-right")) {
@@ -21,32 +27,51 @@ export const attribute2options = (attribute) => {
   }
 
   if(attribute.includes("convex")) {
-    curvature = "convex";
+    curvature = ["convex", 16];
+
+    if(attribute.includes("curvature")) {
+      curvature[1] = parseFloat(substr(attribute.slice(attribute.indexOf("curvature") + 10), ["", 0], [")", 0]));
+    }
   } else if(attribute.includes("concave")) {
-    curvature = "concave";
+    curvature = ["concave", 16];
+
+    if(attribute.includes("curvature")) {
+      curvature[1] = parseFloat(substr(attribute.slice(attribute.indexOf("curvature") + 10), ["", 0], [")", 0]));
+    }
   }
 
   if(attribute.includes("xs")) {
-    size = 2;
+    shadows = [["3px", "6px", "0px"], ["2px", "4px", "0px"]];
   } else if(attribute.includes("sm")) {
-    size = 4;
+    shadows = [["6px", "12px", "0px"], ["4px", "8px", "0px"]];
   } else if(attribute.includes("lg")) {
-    size = 10;
+    shadows = [["15px", "30px", "0px"], ["10px", "20px", "0px"]];
   } else if(attribute.includes("xl")) {
-    size = 16;
+    shadows = [["24px", "48px", "0px"], ["16px", "32px", "0px"]];
+  }
+
+  if(attribute.includes("shadows")) {
+    shadows = substr(attribute.slice(attribute.indexOf("shadows") + 8), ["", 0], [")", 0])
+      .split(",")
+      .map(shadow => shadow.trim().split(/\s/));
   }
 
   if(attribute.includes("drop")) {
     boundary = "dropShadow";
   }
 
+  if(attribute.includes("opacity")) {
+    opacity = substr(attribute.slice(attribute.indexOf("opacity") + 8), ["", 0], [")", 0]).split(",");
+  }
+
   return {
     collection: attribute.includes("collection"),
     radius,
     light,
+    shadows,
     shadowPosition,
     curvature,
-    size,
-    boundary
+    boundary,
+    opacity
   }
 }
