@@ -16,6 +16,9 @@ for(let len = elements.length; len--; ) {
     continue;
   }
 
+
   rgb  = getBackgroundColor(elements[len].parentNode, "background-color");
-  setStyle(elements[len], rgb, options);
+  console.info(rgb);
+  console.info(rgb.map(component => parseFloat(component)));
+  setStyle(elements[len], rgb.map(component => parseFloat(component)), options);
 }
