@@ -1,14 +1,16 @@
 import { substringBetween as substr } from "./substring-between.js";
 
 
-export const attribute2options = (attribute) => {
+export const attribute2options = (attribute, rgb) => {
+  let averageRGB = rgb.slice(0, 3).reduce((a, b) => a + b, 0) / 3;
+  console.info(averageRGB);
   let radius = "8px",
   light = -135,
   shadowPosition = "",
   curvature = ["flat", 16],
   boundary = "boxShadow",
   shadows = [["9px", "18px", "0px"], ["6px", "12px", "0px"]],
-  opacity = ["0.4", "0.15"];
+  opacity = [averageRGB / 255 * 0.4, 255 / averageRGB * 0.10];
 
   if(attribute.includes("radius")) {
     radius = substr(attribute.slice(attribute.indexOf("radius") + 7), ["", 0], [")", 0]);
