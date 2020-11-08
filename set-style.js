@@ -1,47 +1,80 @@
-export const setStyle = (element, rgb, options) => {
-  let lightSigns = ["-", "-"],
-      darkSigns = ["", ""];
-
+export const setStyle = ({
+  element,
+  rgb,
+  options: {
+    collection,
+    radius,
+    colors,
+    light,
+    shadows,
+    shadowPosition,
+    curvature,
+    boundary,
+    opacity
+  }
+}) => {
   const gradient = (curveAngle) => {
     return `linear-gradient(
       ${curveAngle}deg, 
-      rgba(${rgb[0] + options.curvature[1]}, ${rgb[1] + options.curvature[1]}, ${rgb[2] + options.curvature[1]}, ${rgb[3] || 1}),
-      rgba(${rgb[0] - options.curvature[1]}, ${rgb[1] - options.curvature[1]}, ${rgb[2] - options.curvature[1]}, ${rgb[3] || 1}))`;
+      rgba(${rgb[0] + curvature[2]}, ${rgb[1] + curvature[2]}, ${rgb[2] + curvature[2]}, ${rgb[3] || 1}),
+      rgba(${rgb[0] - curvature[2]}, ${rgb[1] - curvature[2]}, ${rgb[2] - curvature[2]}, ${rgb[3] || 1}))`;
   }
   
-  element.style.borderRadius = options.radius;
+  element.style.borderRadius = radius;
 
-  if(options.light === 45) {
-    lightSigns = ["", ""];
-    darkSigns = ["-", "-"];
-  } else if(options.light === -45) {
-    lightSigns[0] = "";
-    darkSigns[0] = "-";
-  } else if(options.light === 135) {
-    lightSigns[1] = "";
-    darkSigns[1] = "-";
+  const offsets = {
+    "top-left": {
+      light: `-${shadows[0][0]} -${shadows[0][0]}`,
+      dark: `${shadows[1][0]} ${shadows[1][0]}`
+    },
+    "top-center": {
+      light: `0px -${shadows[0][0]}`,
+      dark: `0px ${shadows[1][0]}`
+    },
+    "top-right": {
+      light: `${shadows[0][0]} -${shadows[0][0]}`,
+      dark: `-${shadows[1][0]} ${shadows[1][0]}`
+    },
+    "center-right": {
+      light: `${shadows[0][0]} 0px`,
+      dark: `-${shadows[1][0]} 0px`
+    },
+    "bottom-right": {
+      light: `${shadows[0][0]} ${shadows[0][0]}`,
+      dark: `-${shadows[1][0]} -${shadows[1][0]}`
+    },
+    "bottom-center": {
+      light: `0px ${shadows[0][0]}`,
+      dark: `0px -${shadows[1][0]}`
+    },
+    "bottom-left": {
+      light: `-${shadows[0][0]} ${shadows[0][0]}`,
+      dark: `${shadows[1][0]} -${shadows[1][0]}`
+    },
+    "center-left": {
+      light: `-${shadows[0][0]} 0px`,
+      dark: `${shadows[1][0]} 0px`
+    }
   }
 
-  const shadows = `
-    ${lightSigns[0]}${options.shadows[0][0]}
-    ${lightSigns[1]}${options.shadows[0][0]}
-    ${options.shadows[0][1]}
-    ${options.shadows[0][2]} 
-    rgba(255, 255, 255, ${options.opacity[0]}) 
-    ${options.shadowPosition},
+  const mainStyle = `
+    ${offsets[light]["light"]}
+    ${shadows[0][1]}
+    ${shadows[0][2]} 
+    rgba(${colors[0][0]}, ${colors[0][1]}, ${colors[0][2]}, ${opacity[0]}) 
+    ${shadowPosition},
 
-    ${darkSigns[0]}${options.shadows[1][0]}
-    ${darkSigns[1]}${options.shadows[1][0]}
-    ${options.shadows[1][1]}
-    ${options.shadows[1][2]} 
-    rgba(0, 0, 0, ${options.opacity[1]}) 
-    ${options.shadowPosition}`;
+    ${offsets[light]["dark"]}
+    ${shadows[1][1]}
+    ${shadows[1][2]} 
+    rgba(${colors[1][0]}, ${colors[1][1]}, ${colors[1][2]}, ${opacity[1]}) 
+    ${shadowPosition}`;
 
-  element.style[options.boundary] = shadows;
+  element.style[boundary] = mainStyle;
 
-  if(options.curvature[0] === "convex") {
-    element.style.background = gradient(options.light - 90);
-  } else if(options.curvature[0] === "concave") {
-    element.style.background = gradient(options.light + 90);
+  if(curvature[0] === "convex") {
+    element.style.background = gradient(curvature[1] - 90);
+  } else if(curvature[0] === "concave") {
+    element.style.background = gradient(curvature[1] + 90);
   }
 }

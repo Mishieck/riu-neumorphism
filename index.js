@@ -7,15 +7,20 @@ const elements = document.querySelectorAll("[riu-neu]");
 
 for(let len = elements.length; len--; ) {
   let rgb = new Uint8ClampedArray([0, 0, 0]);
+  const attribute = elements[len].getAttribute("riu-neu");
+  const isCollection = attribute.includes("collection");
+  rgb  = getBackgroundColor(!isCollection ? elements[len].parentNode : elements[len], "background-color");
+  rgb = rgb.map(component => parseFloat(component));
+  const options = attribute2options(attribute, rgb);
 
-  if(elements[len].getAttribute("riu-neu").includes("collection")) {
-    rgb  = getBackgroundColor(elements[len], "background-color");
-    console.info("collection");
+  if(isCollection) {
+    let children = elements[len].children;
+
+    for(let l = children.length; l--; ) {
+      setStyle({ element: children[l], rgb, options });
+    }
     continue;
   }
 
-  rgb  = getBackgroundColor(elements[len].parentNode, "background-color");
-  rgb = rgb.map(component => parseFloat(component));
-  const options = attribute2options(elements[len].getAttribute("riu-neu"), rgb);
-  setStyle(elements[len], rgb, options);
+  setStyle({ element: elements[len], rgb, options });
 }
