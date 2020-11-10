@@ -2,7 +2,7 @@ import { substringBetween as substr } from "../substring-between.js";
 
 
 export const shadows = param => {
-  let shadows = [];
+  let shadows = [["6px", "12px", "0px"], ["6px", "12px", "0px"]];
 
   if(param.includes("xs")) {
     shadows = [["2px", "4px", "0px"], ["2px", "4px", "0px"]];
@@ -14,7 +14,7 @@ export const shadows = param => {
     shadows = [["16px", "32px", "0px"], ["16px", "32px", "0px"]];
   }
   
-  if(param.includes("xs")) {
+  if(param.includes("shadows")) {
     shadows = substr(param.slice(param.indexOf("shadows") + 8), ["", 0], [")", 0]).split(",").map(shadow => shadow.trim().split(/\s/));
   }
   

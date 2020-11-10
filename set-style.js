@@ -1,3 +1,6 @@
+import { setProperty } from "./set-property.js";
+
+
 export const setStyle = ({
   element,
   rgb,
@@ -19,8 +22,10 @@ export const setStyle = ({
       rgba(${rgb[0] + curvature[2]}, ${rgb[1] + curvature[2]}, ${rgb[2] + curvature[2]}, ${rgb[3] || 1}),
       rgba(${rgb[0] - curvature[2]}, ${rgb[1] - curvature[2]}, ${rgb[2] - curvature[2]}, ${rgb[3] || 1}))`;
   }
+
+  setProperty(element, "border-radius", radius);
   
-  element.style.borderRadius = radius;
+  // element.style.borderRadius = radius;
 
   const offsets = {
     "top-left": {
@@ -60,21 +65,21 @@ export const setStyle = ({
   const mainStyle = `
     ${offsets[light]["light"]}
     ${shadows[0][1]}
-    ${shadows[0][2]} 
+    ${boundary !== "text-shadow" ? shadows[0][2] : ""} 
     rgba(${colors[0][0]}, ${colors[0][1]}, ${colors[0][2]}, ${opacity[0]}) 
     ${shadowPosition},
 
     ${offsets[light]["dark"]}
     ${shadows[1][1]}
-    ${shadows[1][2]} 
+    ${boundary !== "text-shadow" ? shadows[1][2] : ""} 
     rgba(${colors[1][0]}, ${colors[1][1]}, ${colors[1][2]}, ${opacity[1]}) 
     ${shadowPosition}`;
 
-  element.style[boundary] = mainStyle;
+  setProperty(element, boundary, mainStyle);
 
   if(curvature[0] === "convex") {
-    element.style.background = gradient(curvature[1] - 90);
+    setProperty(element, "background", gradient(curvature[1] - 90));
   } else if(curvature[0] === "concave") {
-    element.style.background = gradient(curvature[1] + 90);
+    setProperty(element, "background", gradient(curvature[1] + 90));
   }
 }

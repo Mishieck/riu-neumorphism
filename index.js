@@ -14,6 +14,7 @@ for(let len = elements.length; len--; ) {
   const options = attribute2options(attribute, rgb);
 
   if(isCollection) {
+    console.info(elements[len].style);
     let children = elements[len].children;
 
     for(let l = children.length; l--; ) {
