@@ -17,11 +17,12 @@ export const setStyle = ({
   }
 }) => {
   // Create gradient
-  const gradient = (curveAngle) => {
+  const gradient = curveAngle => {
     return `linear-gradient(
       ${curveAngle}deg, 
       rgba(${rgb[0] + curvature[2]}, ${rgb[1] + curvature[2]}, ${rgb[2] + curvature[2]}, ${rgb[3] || 1}),
-      rgba(${rgb[0] - curvature[2]}, ${rgb[1] - curvature[2]}, ${rgb[2] - curvature[2]}, ${rgb[3] || 1}))`;
+      rgba(${rgb[0] - curvature[2]}, ${rgb[1] - curvature[2]}, ${rgb[2] - curvature[2]}, ${rgb[3] || 1})
+    )`;
   }
 
   // Set border radius
@@ -30,55 +31,61 @@ export const setStyle = ({
   // Create X and Y offsets for light and dark shadows
   const offsets = {
     "top-left": {
-      light: `-${shadows[0][0]} -${shadows[0][0]}`,
-      dark: `${shadows[1][0]} ${shadows[1][0]}`
+      light: () => `-${shadows[0][0]} -${shadows[0][0]}`,
+      dark: () => `${shadows[1][0]} ${shadows[1][0]}`
     },
     "top-center": {
-      light: `0px -${shadows[0][0]}`,
-      dark: `0px ${shadows[1][0]}`
+      light: () => `0px -${shadows[0][0]}`,
+      dark: () => `0px ${shadows[1][0]}`
     },
     "top-right": {
-      light: `${shadows[0][0]} -${shadows[0][0]}`,
-      dark: `-${shadows[1][0]} ${shadows[1][0]}`
+      light: () => `${shadows[0][0]} -${shadows[0][0]}`,
+      dark: () => `-${shadows[1][0]} ${shadows[1][0]}`
     },
     "center-right": {
-      light: `${shadows[0][0]} 0px`,
-      dark: `-${shadows[1][0]} 0px`
+      light: () => `${shadows[0][0]} 0px`,
+      dark: () => `-${shadows[1][0]} 0px`
     },
     "bottom-right": {
-      light: `${shadows[0][0]} ${shadows[0][0]}`,
-      dark: `-${shadows[1][0]} -${shadows[1][0]}`
+      light: () => `${shadows[0][0]} ${shadows[0][0]}`,
+      dark: () => `-${shadows[1][0]} -${shadows[1][0]}`
     },
     "bottom-center": {
-      light: `0px ${shadows[0][0]}`,
-      dark: `0px -${shadows[1][0]}`
+      light: () => `0px ${shadows[0][0]}`,
+      dark: () => `0px -${shadows[1][0]}`
     },
     "bottom-left": {
-      light: `-${shadows[0][0]} ${shadows[0][0]}`,
-      dark: `${shadows[1][0]} -${shadows[1][0]}`
+      light: () => `-${shadows[0][0]} ${shadows[0][0]}`,
+      dark: () => `${shadows[1][0]} -${shadows[1][0]}`
     },
     "center-left": {
-      light: `-${shadows[0][0]} 0px`,
-      dark: `${shadows[1][0]} 0px`
+      light: () => `-${shadows[0][0]} 0px`,
+      dark: () => `${shadows[1][0]} 0px`
     }
   }
 
-  // Create shadow style
-  const mainStyle = `
-    ${offsets[lightSource]["light"]}
+  // Create light shadow
+  const lightShadow = `
+    ${offsets[lightSource]["light"]()}
     ${shadows[0][1]}
-    ${boundary !== "text-shadow" ? shadows[0][2] : ""} 
+    ${boundary === "box-shadow" ? shadows[0][2] : ""} 
     rgba(${colors[0][0]}, ${colors[0][1]}, ${colors[0][2]}, ${opacity[0]}) 
-    ${shadowPosition},
+    ${shadowPosition}`;
 
-    ${offsets[lightSource]["dark"]}
+  // Create dark shadow
+  const darkShadow = `
+    ${offsets[lightSource]["dark"]()}
     ${shadows[1][1]}
-    ${boundary !== "text-shadow" ? shadows[1][2] : ""} 
+    ${boundary === "box-shadow" ? shadows[1][2] : ""} 
     rgba(${colors[1][0]}, ${colors[1][1]}, ${colors[1][2]}, ${opacity[1]}) 
     ${shadowPosition}`;
 
-  // Set shadows
-  setProperty(element, boundary, mainStyle);
+  // Set shadow
+  if(boundary === "drop-shadow") {
+    setProperty(element, "filter", `drop-shadow(${lightShadow}) drop-shadow(${darkShadow})`);
+  } else {
+    setProperty(element, boundary, `${lightShadow}, ${darkShadow}`);
+  }
 
   // Set curvature
   if(curvature[0] === "convex") {
@@ -86,4 +93,5 @@ export const setStyle = ({
   } else if(curvature[0] === "concave") {
     setProperty(element, "background", gradient(curvature[1] + 90));
   }
+
 }

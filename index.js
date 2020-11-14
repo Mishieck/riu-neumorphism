@@ -4,68 +4,39 @@ import { setStyle } from "./set-style.js";
 import { observeDOMMutations } from "./observe-dom-mutations.js";
 
 
-window.addEventListener("load", () => {
-  const elements = document.querySelectorAll("[riu-neu]");
+window.addEventListener("load", e => {
+  const riuNeuElements = document.querySelectorAll("[riu-neu]");
 
-  for(const element of elements) {
+  for(const element of riuNeuElements) {
     style(element);
   }
   
   if(observeDOMMutations) {
-    observeDOMMutations(
-      document.getElementsByTagName("body")[0],
-      mutations => {
-        for(const mutation of mutations) {
-          if(mutation.type === "childList") {
-            for(const node of mutation.addedNodes) {
-              if(node.hasAttribute("riu-neu")) {
-                style(node);
-              } else if(node.parentNode.hasAttribute("riu-neu")) {
-                style(node.parentNode);
-              }
-            }
-          }
-        }
-      },
-      { childList: true, subtree: true }
-    );
-    
-    let riuNeuElements = document.querySelectorAll("[riu-neu]");
+    observeNodeInsertion(document.getElementsByTagName("body")[0]);
   
     for(const element of riuNeuElements) {
-      observeDOMMutations(
-        element,
-        mutations => {
-          for(const mutation of mutations) {
-            console.info(mutation.target);
-            style(mutation.target);
-          }
-        },
-        { attributes: true, attributeFilter: ["riu-neu"] }
-      );
-  
+      observeAttributeChanges(element);
+
       if(element.getAttribute("riu-neu").includes("collection")) {
-        observeColorMutation(element);
+        observeColorChanges(element);
       } else {
-        observeColorMutation(element.parentNode);
+        observeColorChanges(element.parentNode);
       }
     }
   }
 });
 
 const style = element => {
-  let rgb = new Uint8ClampedArray([0, 0, 0]);
-  const attribute = element.getAttribute("riu-neu");
-  const isCollection = attribute.includes("collection");
-  rgb  = getBackgroundColor(!isCollection ? element.parentNode : element, "background-color");
-  rgb = rgb.map(component => parseFloat(component));
-  const options = attribute2options(attribute, rgb);
-
+  const attribute = element.getAttribute("riu-neu"),
+        isCollection = attribute.includes("collection"),
+        rgb  = getBackgroundColor(isCollection ? element : element.parentNode, "background-color"),
+        options = attribute2options(attribute, rgb);
+  
   if(isCollection) {
-    let children = element.children;
+    const children = element.children;
 
-    for(let l = children.length; l--; ) {
-      setStyle({ element: children[l], rgb, options });
+    for(const child of children) {
+      setStyle({ element: child, rgb, options });
     }
 
     return;
@@ -74,8 +45,40 @@ const style = element => {
   setStyle({ element, rgb, options });
 }
 
+const observeNodeInsertion = element => {
+  observeDOMMutations(
+    element,
+    mutations => {
+      for(const mutation of mutations) {
+        if(mutation.type === "childList") {
+          for(const node of mutation.addedNodes) {
+            if(node.hasAttribute("riu-neu")) {
+              style(node);
+            } else if(node.parentNode.hasAttribute("riu-neu")) {
+              style(node.parentNode);
+            }
+          }
+        }
+      }
+    },
+    { childList: true, subtree: true }
+  );
+}
 
-const observeColorMutation = element => {
+const observeAttributeChanges = element => {
+  observeDOMMutations(
+    element,
+    mutations => {
+      for(const mutation of mutations) {
+        console.info(mutation.target);
+        style(mutation.target);
+      }
+    },
+    { attributes: true, attributeFilter: ["riu-neu"] }
+  );
+}
+
+const observeColorChanges = element => {
   observeDOMMutations(
     element,
     mutations => {
