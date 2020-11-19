@@ -1,7 +1,6 @@
 export const setProperty = (element, property, value) => {
-  if(property in element.style) {
-    element.style.setProperty(property, value, "");
-  } else {
+  if(property in element.style) element.style.setProperty(property, value, "");
+  else {
     const vendorPrefixes = ["-webkit-", "-moz-", "-o-", "-ms-"];
 
     for(let i = 4; i--; ) {

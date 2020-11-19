@@ -5,7 +5,6 @@ export const setStyle = ({
   element,
   rgb,
   options: {
-    collection,
     radius,
     colors,
     lightSource,
@@ -13,7 +12,7 @@ export const setStyle = ({
     shadowPosition,
     curvature,
     boundary,
-    opacity
+    opacities
   }
 }) => {
   // Create gradient
@@ -69,7 +68,7 @@ export const setStyle = ({
     ${offsets[lightSource]["light"]()}
     ${shadows[0][1]}
     ${boundary === "box-shadow" ? shadows[0][2] : ""} 
-    rgba(${colors[0][0]}, ${colors[0][1]}, ${colors[0][2]}, ${opacity[0]}) 
+    rgba(${colors[0][0]}, ${colors[0][1]}, ${colors[0][2]}, ${opacities[0]}) 
     ${shadowPosition}`;
 
   // Create dark shadow
@@ -77,21 +76,14 @@ export const setStyle = ({
     ${offsets[lightSource]["dark"]()}
     ${shadows[1][1]}
     ${boundary === "box-shadow" ? shadows[1][2] : ""} 
-    rgba(${colors[1][0]}, ${colors[1][1]}, ${colors[1][2]}, ${opacity[1]}) 
+    rgba(${colors[1][0]}, ${colors[1][1]}, ${colors[1][2]}, ${opacities[1]}) 
     ${shadowPosition}`;
 
   // Set shadow
-  if(boundary === "drop-shadow") {
-    setProperty(element, "filter", `drop-shadow(${lightShadow}) drop-shadow(${darkShadow})`);
-  } else {
-    setProperty(element, boundary, `${lightShadow}, ${darkShadow}`);
-  }
+  if(boundary === "drop-shadow") setProperty(element, "filter", `drop-shadow(${lightShadow}) drop-shadow(${darkShadow})`);
+  else setProperty(element, boundary, `${lightShadow}, ${darkShadow}`);
 
   // Set curvature
-  if(curvature[0] === "convex") {
-    setProperty(element, "background", gradient(curvature[1] - 90));
-  } else if(curvature[0] === "concave") {
-    setProperty(element, "background", gradient(curvature[1] + 90));
-  }
-
+  if(curvature[0] === "convex") setProperty(element, "background", gradient(curvature[1] - 90));
+  else if(curvature[0] === "concave") setProperty(element, "background", gradient(curvature[1] + 90));
 }

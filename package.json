@@ -1,0 +1,20 @@
+{
+  "name": "riu-neumorphism",
+  "version": "1.0.0",
+  "description": "A JavaScript utility framework for neumorphic designs.",
+  "main": "riu-neumorphism.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mishieck/riu-neumorphism.git"
+  },
+  "keywords": ["riu", "riu-neumorphism", "neumorphism", "riu-neu", "neu", "real-neumorphism", "neo", "neomorphism", "riu-neomorphism", "neumorphic-utilities", "neumorphism-utilities"],
+  "author": "Mishieck Mwale <mishieckmwale@gmail.com> (https://mishieck.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mishieck/riu-neumorphism/issues"
+  },
+  "homepage": "https://github.com/Mishieck/riu-neumorphism#readme"
+}

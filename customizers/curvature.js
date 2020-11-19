@@ -23,16 +23,10 @@ export const curvature = param => {
 
   if(param.includes("convex")) {
     curvature[0] = "convex";
-
-    if(param.includes("curvature")) {
-      setCurvature();
-    }
+    if(param.includes("curvature")) setCurvature();
   } else if(param.includes("concave")) {
     curvature[0] = "concave";
-
-    if(param.includes("curvature")) {
-      setCurvature();
-    }
+    if(param.includes("curvature")) setCurvature();
   }
 
   return curvature;
