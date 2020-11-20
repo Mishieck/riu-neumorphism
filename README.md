@@ -5,7 +5,7 @@ Build neumorphic UI that looks good on a wide range of colors. Choose from a wid
 
 <img src="https://user-images.githubusercontent.com/57598264/99809149-8c847f80-2b4a-11eb-8ac9-2dd853ec1f24.png" alt="Neumorphism Grid">
 
-_Figure 1.0: Neumorphism grid. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/neumorphism-grid.htm)_
+_Figure 1.0: Neumorphism grid. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/neumorphism-grid.htm)._
 
 ## Installation
 a) npm Module
@@ -48,7 +48,7 @@ _Figure 2.1_ shows the default styling.
 
 <img src="https://user-images.githubusercontent.com/57598264/99809596-3106c180-2b4b-11eb-9c83-59481fdc1495.png" alt="Default Styling">
 
-_Figure 2.1: Default styling. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/defaults.htm)_
+_Figure 2.1: Default styling. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/defaults.htm)._
 
 Default values will be used in this case. The default values are:
 
@@ -82,11 +82,11 @@ _Figure 3.1_ shows elements with different radii.
 
 <img src="https://user-images.githubusercontent.com/57598264/99809691-54ca0780-2b4b-11eb-86fa-c4eca321a232.png" alt="Radii">
 
-_Figure 3.1: Elements at different radii. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/radius.htm)_
+_Figure 3.1: Elements at different radii. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/radius.htm)._
 
 
 #### __Light Source Position__
-The light source position determines where the light and dark shadows are positioned on an element. This is customised only via the 8 pre-defined values; _top-left_, _top-center_, _top-right_, _center-right_, _bottom-right_, _bottom-center_, _bottom-left_ and _center-left_. The default value is _top-left_. Just include any of these values in the "riu-neu" attribute value to set the desired position. _Figure 3.2_ illustrates the available light source positions.
+The light source position determines where the light and dark shadows are positioned on an element. This is customized only via the 8 pre-defined values; _top-left_, _top-center_, _top-right_, _center-right_, _bottom-right_, _bottom-center_, _bottom-left_ and _center-left_. The default value is _top-left_. Just include any of these values in the "riu-neu" attribute value to set the desired position. _Figure 3.2_ illustrates the available light source positions.
 
 __Example 3.2__
 
