@@ -4,7 +4,8 @@ A JavaScript utility framework for neumorphic designs.
 Build neumorphic UI that looks good on a wide range of colors. Choose from a wide range of options to customize your designs to your liking. Make your designs look realistic via neumorphism.
 
 ![Neumorphism Grid](url)
-_Figure x: Neumorphism grid. Code found [here](https://github.io)_
+
+_Figure x: Neumorphism grid. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/neumorphism-grid.htm)_
 
 ## Installation
 a) npm Module
@@ -44,7 +45,8 @@ or
 `<div riu-neu="">...</div>`
 
 ![Default Styling](url)
-_Figure x: Default styling. Code found [here](https://github.io)_
+
+_Figure x: Default styling. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/defaults.htm)_
 
 Default values will be used in this case. The default values are:
 
@@ -58,13 +60,13 @@ Default values will be used in this case. The default values are:
   * Spread Radius - 0px
   * Colors - colors are set as described in the __Color Ranges__ section
   * Curvature - Flat
-  * Opacity - 0.8 for the light shadow and 1 for the dark shadow
+  * Opacities - 0.8 for the light shadow and 1 for the dark shadow
 
 ### Customization
 Customization of the shadows is done via the "riu-neu" attribute by choosing from pre-defined values and/or using customization functions. All values inside the attribute are seperated by a space.
 
 #### __Border Radius__
-All neumorphic elements are required to have a border radius greater than 0. The border radius is customized only via the "radius" function. The function has the form:
+All neumorphic elements are required to have a border radius greater than 0. The border radius is customized only via the _radius_ function. The function has the form:
 
 `radius(value)`
 
@@ -77,7 +79,8 @@ __Example__
 _Figure x shows elements with different radii_
 
 ![Radii](url)
-_Figure x: Elements at different radii. Code found [here](https://github.io)_
+
+_Figure x: Elements at different radii. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/radius.htm)_
 
 
 #### __Light Source Position__
@@ -88,17 +91,19 @@ __Example__
 `<div riu-neu="top-right">...</div>`
 
 ![Light Source Positions](url)
-_Figure x: Light source positions. Code found [here](https://github.io)._
+
+_Figure x: Light source positions. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/light.htm)._
 
 #### __Shadow Boundary__
-The boundary of the shadow can be customized by using one of three pre-defined values. The values are _box_ for any element, _drop_ for svg and png images and _text_ for text. The default value is _box_. _Figure x_ illustrates the effect of using these values.
+The boundary of the shadow can be customized by using one of three pre-defined values. The values are _box_ for any element, _drop_ for svg and png images, and _text_ for text. The default value is _box_. _Figure x_ illustrates the effect of using these values.
 
 __Example__
 
 `<div riu-neu="text">...</div>`
 
-![RIU Neumorphism](url)
-_Figure x: Shadow boundaries. Code found [here](https://github.io)._
+![Shadow Boundaries](url)
+
+_Figure x: Shadow boundaries. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/boundary.htm)._
 
 __Note:__ For _drop_ shadows, make sure the color of the image does not conflict with the background color of its background color.
 
@@ -109,8 +114,9 @@ __Example__
 
 `<div riu-neu="inner">...</div>`
 
-![RIU Neumorphism](url)
-_Figure x: Shadow positions. Code found [here](https://github.io)._
+![Shadow Positions](url)
+
+_Figure x: Shadow positions. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/shadow-pisitions.htm)._
 
 __Note:__ Inner shadows only work for _box_ shadow. It doesn't work for _drop_ or _text_ shadow.
 
@@ -125,10 +131,11 @@ __Example__
 
 `<div riu-neu="colors(255 255 255, 0 0 0)">...</div>`
 
-![RIU Neumorphism](url)
-_Figure x: Shadow colors. Code found [here](https://github.io)._
+![Shadow Colors](url)
 
-__Note:__ The values for the colors do not include opacities. The opacities are set seperatly as described in the __Opacity__ section.
+_Figure x: Shadow colors. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/colors.htm)._
+
+__Note:__ The values for the colors do not include opacities. The opacities are set seperatly as described in the __Opacities__ section.
 
 #### __Shadows__
 The X-offset, Y-offset, blur radius and spread readius of the shadows can be customized via the 5 pre-defined values or via the _shadows_ function.
@@ -152,10 +159,12 @@ sm    | 4px       | 4px       | 8px           | 0px
 md    | 6x        | 6px       | 12px          | 0px
 lg    | 10px      | 10px      | 20px          | 0px
 xl    | 16px      | 16px      | 32px          | 0px
+
 _Table x: Shadow X-offsets, Y-offsets, blur radii and spread radii._
 
-![RIU Neumorphism](url)
-_Figure x: Shadow X-offsets, Y-offsets, blur radii and spread radii. Code found [here](https://github.io)._
+![Shadows](url)
+
+_Figure x: Shadow X-offsets, Y-offsets, blur radii and spread radii. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/shadows.htm)._
 
 __Note:__ Only one value is used for both the X and Y offsets because they are always equal.
 
@@ -174,8 +183,9 @@ __Example__
 
 `<div riu-neu="convex curvature(center-left, 32)">...</div>`
 
-![RIU Neumorphism](url)
-_Figure x: Surface curvature. Code found [here](https://github.io)._
+![Curvature](url)
+
+_Figure x: Surface curvature. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/curvature.htm)._
 
 __Note:__ Surface curvature does not work on _text_ and _drop_ shadows. The _curvature_ function does not work without _convex_ or _concave_ value. Using _curvature_ with _flat_ has no effect.
 
@@ -190,11 +200,12 @@ __Example__
 
 `<div riu-neu="opacities(0.5, 0.1)">...</div>`
 
-![RIU Neumorphism](url)
-_Figure x: Opacity. Code found [here](https://github.io)._
+![Opacities](url)
+
+_Figure x: Opacities. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/opacities.htm)._
 
 ## Collection
-If you want to create multiple elements with the same style, you can use a collection. Styling is applied on the direct children of a collection. All customization defined on the collection will be applied on all direct children of the element, but not the element itself. You make an element a collection by adding "collection" to the "riu-neu" attribute value. Putting the attribute "riu-neu" on any of the children overrights the collection's style on that child.
+If you want to create multiple elements with the same style, you can use a collection. Styling is applied on the direct children of a collection. All customization defined on the collection will be applied on all direct children of the element, but not the element itself. You make an element a collection by adding "collection" to the "riu-neu" attribute value. Putting the attribute "riu-neu" on any of the direct children overrights the collection's style on that child.
 
 __Example__
 
@@ -205,11 +216,16 @@ __Example__
 </div>
 ```
 
-![RIU Neumorphism](url)
-_Figure x: Collection. Code found [here](https://github.io)._
+![Collection](url)
+
+_Figure x: Collection. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/collection.htm)._
 
 ## Color Ranges
-__RIU Neumorphism__ uses the background color of an element to set the shadow colors. To get the light shadow, 24 (18 HEX) is added to the red, green and blue components of the color. To get the dark shadow, 24 (18 HEX) is subtracted from the color components. For consistent design, the background color must leave a space of 24 (or 18 HEX) from the minimum (0) and maximum (255 or FF HEX) values of the color components. Therefore, the recommended range of color component values is 24 to 231 (or 18 to E7 HEX). This means that the recommeded darkest color is (24, 24, 24) or 181818 HEX and the lightest color is (231, 231, 231) or E7E7E7 HEX. This doesn't mean that colors outside the range are forbidden. You can still make it work with colors outside the range, especially through cutomization.
+__RIU Neumorphism__ uses the background color of an element to set the shadow colors. To get the light shadow, 24 (18 HEX) is added to the red, green and blue components of the color. To get the dark shadow, 24 (18 HEX) is subtracted from the color components. For consistent design, the background color must leave a space of 24 (or 18 HEX) from the minimum (0) and maximum (255 or FF HEX) values of the color components. Therefore, the recommended range of color component values is 24 to 231 (or 18 to E7 HEX). This means that the recommeded darkest color is (24, 24, 24) or 181818 HEX and the lightest color is (231, 231, 231) or E7E7E7 HEX. This doesn't mean that colors outside the range are forbidden. You can still make it work with colors outside the range, especially through cutomization. _figure x_ shows neumorphic elements at different shades of gray.
+
+![Color Ranges](url)
+
+_Figure x: Color ranges - shades of gray. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/backgrounds.htm)._
 
 __Note:__ For collections, the background color must be explicitly set on the element. For other elements, the background color must be explicitly set on the parent element. Make sure that the background colors on the target elements do not conflict with the background colors of their parent elements.
 

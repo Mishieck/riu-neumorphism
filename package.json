@@ -2,7 +2,7 @@
   "name": "riu-neumorphism",
   "version": "1.0.0",
   "description": "A JavaScript utility framework for neumorphic designs.",
-  "main": "riu-neumorphism.js",
+  "main": "lib/riu-neumorphism.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
