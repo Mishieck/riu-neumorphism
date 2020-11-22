@@ -2,19 +2,41 @@
   "name": "riu-neumorphism",
   "version": "1.0.0",
   "description": "A JavaScript utility framework for neumorphic designs.",
-  "main": "lib/riu-neumorphism.js",
+  "main": "./dist/riu-neumorphism.js",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mishieck/riu-neumorphism.git"
   },
-  "keywords": ["riu", "riu-neumorphism", "neumorphism", "riu-neu", "neu", "real-neumorphism", "neo", "neomorphism", "riu-neomorphism", "neumorphic-utilities", "neumorphism-utilities"],
+  "keywords": [
+    "riu",
+    "riu-neumorphism",
+    "neumorphism",
+    "riu-neu",
+    "neu",
+    "real-neumorphism",
+    "neo",
+    "neomorphism",
+    "riu-neomorphism",
+    "neumorphic-utilities",
+    "neumorphism-utilities"
+  ],
   "author": "Mishieck Mwale <mishieckmwale@gmail.com> (https://mishieck.github.io)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Mishieck/riu-neumorphism/issues"
   },
-  "homepage": "https://github.com/Mishieck/riu-neumorphism#readme"
+  "homepage": "https://github.com/Mishieck/riu-neumorphism#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.1",
+    "webpack": "^5.6.0",
+    "webpack-cli": "^4.2.0"
+  }
 }
