@@ -18,7 +18,7 @@ b) CDN
 
 or
 
-`<script src="https://jsdelivr.com/riu-neumorphism"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/riu-neumorphism"></script>`
 
 
 ## Usage
