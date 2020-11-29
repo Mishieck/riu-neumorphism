@@ -1,13 +1,15 @@
-export const getBackgroundColor = (element, property) => {
+export const getBackgroundColor = element => {
   const style = window.getComputedStyle
-        ? window.getComputedStyle(element, null).getPropertyValue(property)
-        : element.style[property.replace(/-([a-z])/g, g => g[1].toUpperCase())];
+        ? window.getComputedStyle(element, null).getPropertyValue("background-color")
+        : element.style.backgroundColor;
 
   const color = style.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/).slice(1, 5).map(value => parseFloat(value));
-  
-  if(color[0] === 0 && color[1] === 0 && color[2] === 0) {
-    console.error(`Background color not set on ${element.hasAttribute("riu-neu") ? "collection" : "parent element"}!`);
-    return [];
+  const colorNotSet = (color[0] === 0 && color[1] === 0 && color[2] === 0) || (color[0] === 255 && color[1] === 255 && color[2] === 255);
+  // If color is not set, look for closest ancestor whose color was set explicitly
+  if(colorNotSet) {
+    if(element.tagName === "BODY") return (console.error(`Background color not set or is out of range!`), []);
+    else if(element.hasAttribute("riu-neu")) console.warn(`Background color of neumorphic element is either not set or is out of range!`);
+    return getBackgroundColor(element.parentElement);
   }
 
   return color;

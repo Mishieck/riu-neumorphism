@@ -1,7 +1,7 @@
 # riu-neumorphism
 A JavaScript utility framework for neumorphic designs.
 
-Build neumorphic UI that looks good on a wide range of colors. Choose from a wide range of options to customize your designs to your liking. Make your designs look realistic via neumorphism.
+With a wild range of options, style and customize your UI using neumorphic design. __RIU Neumorphism__ works on almost any color. Make your designs look realistic via neumorphism.
 
 <img src="https://user-images.githubusercontent.com/57598264/99809149-8c847f80-2b4a-11eb-8ac9-2dd853ec1f24.png" alt="Neumorphism Grid">
 
@@ -198,7 +198,7 @@ The opacities of the shadows can be customized via the _opacities_ function. The
 
 `opacities(OL, OD)`
 
-where `OL` is the opacity of the light shadow and `OD` is the opacity of the dark shadow. The values range from 0 to 1 just as it is in CSS. The default value for the light shadow is 0.8 and 1 is the default for the dark shadow.
+where `OL` is the opacity of the light shadow and `OD` is the opacity of the dark shadow. The values range from 0 to 1 just as it is in CSS. The default value for the light shadow is 0.8 and 1 is for the dark shadows.
 
 __Example 3.8__
 
@@ -227,20 +227,20 @@ __Example 4.1__
 _Figure 4.1: Collection. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/collection.htm)._
 
 ## Color Ranges
-__RIU Neumorphism__ uses the background color of an element to set the shadow colors. To get the light shadow, 24 (18 HEX) is added to the red, green and blue components of the color. To get the dark shadow, 24 (18 HEX) is subtracted from the color components. For consistent design, the background color must leave a space of 24 (or 18 HEX) from the minimum (0) and maximum (255 or FF HEX) values of the color components. Therefore, the recommended range of color component values is 24 to 231 (or 18 to E7 HEX). This means that the recommeded darkest color is (24, 24, 24) or 181818 HEX and the lightest color is (231, 231, 231) or E7E7E7 HEX. This doesn't mean that colors outside the range are forbidden. You can still make it work with colors outside the range, especially through cutomization. _figure 5.1_ shows neumorphic elements at different shades of gray.
+__RIU Neumorphism__ adjusts the background color of an element to set the shadow colors. To get the light shadow, the color is lightened. To get the dark shadow, the color is darkened. RIU Neumorphism works for every color except _black_ and _white_. _figure 5.1_ shows neumorphic elements at different shades of gray.
 
 <img src="https://user-images.githubusercontent.com/57598264/99806928-63aebb00-2b47-11eb-80d7-1b5332643277.png" width="608" height="640">
 
 _Figure 5.1: Color ranges - shades of gray. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/backgrounds.htm)._
 
-__Note:__ For collections, the background color must be explicitly set on the element. For other elements, the background color must be explicitly set on the parent element. Make sure that the background colors on the target elements do not conflict with the background colors of their parent elements.
+__Note:__ If the background color is not explicitly set on an element or is out of range (black or white), the background color of the closest ancester with a color explicitly set will be used instead. If no such ancenster is found, the styles will not be set. Make sure that the background colors on the target elements do not conflict with the background colors of their parent elements.
 
 ## Automatic Update
 The styling on neumorphic elements is updated automatically when any of the following occurs:
 
 1. New elements have been added dynamically to the DOM
 2. The "riu-neu" attribute has been updated dynamically
-3. The background color of a collection or parent element of a neumorphic element has been changed.
+3. The background color of a neumorphic element has been changed.
 
 ## Reporting Issues
 Use the official GitHub bug tracker to report issues.

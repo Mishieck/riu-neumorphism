@@ -14,8 +14,7 @@ const riuNeumorphism = () => {
     
       for(const element of riuNeuElements) {
         observeAttributeChanges(element);
-        if(element.getAttribute("riu-neu").includes("collection")) observeColorChanges(element);
-        else observeColorChanges(element.parentNode);
+        observeColorChanges(element);
       }
     }
   });
@@ -24,9 +23,9 @@ const riuNeumorphism = () => {
 const style = element => {
   const attribute = element.getAttribute("riu-neu"),
         isCollection = attribute.includes("collection"),
-        rgb  = getBackgroundColor(isCollection ? element : element.parentNode, "background-color");
-
-  if(!rgb[0]) return;
+        rgb  = getBackgroundColor(element);
+        
+  if(rgb[0] === "undefined") return;
   const options = attribute2options(attribute, rgb);
   
   if(isCollection) {
@@ -44,8 +43,8 @@ const observeNodeInsertion = element => {
     mutations => {
       for(const mutation of mutations) {
         for(const node of mutation.addedNodes) {
-          if(node.hasAttribute("riu-neu")) style(node); 
-          else if(node.parentNode.hasAttribute("riu-neu")) style(node.parentNode);
+          if(node.hasAttribute("riu-neu")) style(node);
+          else if(node.parentElement.hasAttribute("riu-neu")) style(node.parentElement);
         }
       }
     },
@@ -64,12 +63,7 @@ const observeAttributeChanges = element => {
 const observeColorChanges = element => {
   observeDOMMutations(
     element,
-    mutations => {
-      for(const mutation of mutations) {
-        if(mutation.target.hasAttribute("riu-neu")) style(mutation.target);
-        else for(const child of mutation.target.children) style(child);
-      }
-    },
+    mutations => { for(const mutation of mutations) style(mutation.target); },
     { attributes: true, attributeFilter: ["style"] }
   );
 }

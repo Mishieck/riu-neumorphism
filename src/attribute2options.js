@@ -10,7 +10,7 @@ export const attribute2options = (attribute, rgb) => {
   return {
     collection: attribute.includes("collection"),
     radius: attribute.includes("radius") ? getRadius(attribute) : "8px",
-    colors: attribute.includes("colors") ? getColors(attribute) : [[rgb[0] + 24, rgb[1] + 24, rgb[2] + 24], [rgb[0] - 24, rgb[1] - 24, rgb[2] - 24]],
+    colors: getColors(attribute, rgb),
     lightSource: getLight(attribute),
     shadows: getShadows(attribute),
     shadowPosition: attribute.includes("inner") ? "inset" : "",
