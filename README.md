@@ -107,7 +107,7 @@ __Example 3.3__
 
 _Figure 3.3: Shadow boundaries. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/boundary.htm)._
 
-__Note:__ For _drop_ shadows, make sure the color of the image does not conflict with the background color of its background color.
+__Note:__ For _drop_ shadows, make sure the color of the image does not conflict with the background color of its parent element.
 
 #### __Shadow Position__
 Shadows can be positioned either outside or inside an element. Use the value _inner_ to make the shadows go inside an element. The default value is _outer_. The two shadow positions are illustrated in _Figure 3.4_.
@@ -198,7 +198,7 @@ The opacities of the shadows can be customized via the _opacities_ function. The
 
 `opacities(OL, OD)`
 
-where `OL` is the opacity of the light shadow and `OD` is the opacity of the dark shadow. The values range from 0 to 1 just as it is in CSS. The default value for the light shadow is 0.8 and 1 is for the dark shadows.
+where `OL` is the opacity of the light shadow and `OD` is the opacity of the dark shadow. The values range from 0 to 1 just as it is in CSS. The default value for the light shadow is 0.8 and 1 is for the dark shadow.
 
 __Example 3.8__
 
@@ -233,7 +233,7 @@ __RIU Neumorphism__ adjusts the background color of an element to set the shadow
 
 _Figure 5.1: Color ranges - shades of gray. Code found [here](https://github.com/Mishieck/riu-neumorphism-demos/blob/main/backgrounds.htm)._
 
-__Note:__ If the background color is not explicitly set on an element or is out of range (black or white), the background color of the closest ancester with a color explicitly set will be used instead. If no such ancenster is found, the styles will not be set. Make sure that the background colors on the target elements do not conflict with the background colors of their parent elements.
+__Note:__ If the background color is not explicitly set on an element or is out of range (black or white), the background color of the closest ancestor with a color explicitly set will be used instead. If no such ancenstor is found, the styles will not be set. Make sure that the background colors on the target elements do not conflict with the background colors of their parent elements.
 
 ## Automatic Update
 The styling on neumorphic elements is updated automatically when any of the following occurs:
