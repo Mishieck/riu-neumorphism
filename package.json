@@ -2,9 +2,10 @@
   "name": "riu-neumorphism",
   "version": "1.1.2",
   "description": "A JavaScript utility framework for neumorphic designs.",
-  "main": "./dist/riu-neumorphism.js",
+  "main": "./dist/main.js",
   "files": [
-    "/dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "build": "webpack --config webpack.config.js"
