@@ -1,21 +1,24 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/riu-neumorphism.js'),
+  entry: path.resolve(__dirname, "./src/main.js"),
   module: {
     rules: [
       {
         test: /\.(js)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ["babel-loader"]
       }
     ]
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ["*", ".js"]
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'riu-neumorphism.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    library: "riuNeumorphism",
+    libraryTarget: "umd",
+    umdNamedDefine: true
   }
 };
