@@ -1,32 +1,22 @@
 import { setProperty } from "./set-property.js";
 
-
 export const setStyle = ({
   element,
   rgb,
-  options: {
-    radius,
-    colors,
-    lightSource,
-    shadows,
-    shadowPosition,
-    curvature,
-    boundary,
-    opacities
-  }
+  options: { radius, colors, lightSource, shadows, shadowPosition, curvature, boundary, opacities }
 }) => {
   // Create gradient
-  const gradient = curveAngle => {
+  const gradient = (curveAngle) => {
     return `linear-gradient(
       ${curveAngle}deg, 
       rgba(${rgb[0] + curvature[2]}, ${rgb[1] + curvature[2]}, ${rgb[2] + curvature[2]}, ${rgb[3] || 1}),
       rgba(${rgb[0] - curvature[2]}, ${rgb[1] - curvature[2]}, ${rgb[2] - curvature[2]}, ${rgb[3] || 1})
     )`;
-  }
+  };
 
   // Set border radius
   setProperty(element, "border-radius", radius);
-  
+
   // Create X and Y offsets for light and dark shadows
   const offsets = {
     "top-left": {
@@ -61,7 +51,7 @@ export const setStyle = ({
       light: () => `-${shadows[0][0]} 0px`,
       dark: () => `${shadows[1][0]} 0px`
     }
-  }
+  };
 
   // Create light shadow
   const lightShadow = `
@@ -80,10 +70,11 @@ export const setStyle = ({
     ${shadowPosition}`;
 
   // Set shadow
-  if(boundary === "drop-shadow") setProperty(element, "filter", `drop-shadow(${lightShadow}) drop-shadow(${darkShadow})`);
+  if (boundary === "drop-shadow")
+    setProperty(element, "filter", `drop-shadow(${lightShadow}) drop-shadow(${darkShadow})`);
   else setProperty(element, boundary, `${lightShadow}, ${darkShadow}`);
 
   // Set curvature
-  if(curvature[0] === "convex") setProperty(element, "background", gradient(curvature[1] - 90));
-  else if(curvature[0] === "concave") setProperty(element, "background", gradient(curvature[1] + 90));
-}
+  if (curvature[0] === "convex") setProperty(element, "background", gradient(curvature[1] - 90));
+  else if (curvature[0] === "concave") setProperty(element, "background", gradient(curvature[1] + 90));
+};

@@ -5,7 +5,6 @@ import { shadows as getShadows } from "./customizers/shadows.js";
 import { curvature as getCurvature } from "./customizers/curvature.js";
 import { opacities as getOpacities } from "./customizers/opacities.js";
 
-
 export const attribute2options = (attribute, rgb) => {
   return {
     collection: attribute.includes("collection"),
@@ -15,7 +14,7 @@ export const attribute2options = (attribute, rgb) => {
     shadows: getShadows(attribute),
     shadowPosition: attribute.includes("inner") ? "inset" : "",
     curvature: getCurvature(attribute),
-    boundary: attribute.includes("drop") ? "drop-shadow" : (attribute.includes("text") ? "text-shadow" : "box-shadow"),
+    boundary: attribute.includes("drop") ? "drop-shadow" : attribute.includes("text") ? "text-shadow" : "box-shadow",
     opacities: attribute.includes("opacities") ? getOpacities(attribute) : [0.8, 1]
-  }
-}
+  };
+};
